@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    @apply antialiased;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-surface border border-line rounded-xl shadow-card p-5;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-brand text-white font-semibold px-4 py-2.5 text-sm hover:bg-brand-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-white text-brand border border-brand/30 font-semibold px-4 py-2.5 text-sm hover:bg-brand-light transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg text-muted font-medium px-3 py-2 text-sm hover:bg-brand-light hover:text-brand transition-colors;
+  }
+  .input {
+    @apply w-full rounded-lg border border-line bg-white px-3.5 py-2.5 text-sm text-ink placeholder:text-muted/70 focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-colors;
+  }
+  .label {
+    @apply block text-xs font-semibold text-muted uppercase tracking-wide mb-1.5;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold;
+  }
+}
+
+/* Signature element: an ECG / pulse waveform that draws itself once on load.
+   Used sparingly — auth hero and dashboard header dividers only. */
+.pulse-line {
+  stroke-dasharray: 620;
+  stroke-dashoffset: 620;
+  animation: draw-pulse 1.8s ease-out forwards;
+}
+@keyframes draw-pulse {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pulse-line {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
